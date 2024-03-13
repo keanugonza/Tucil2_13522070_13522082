@@ -11,7 +11,6 @@ def plot_curve(curve_points, points):
     plt.xlabel('X')
     plt.ylabel('Y')
     plt.grid(True)
-    plt.plot(points[0][0], points[0][1], marker = 'o', markerfacecolor = 'red')
-    plt.plot(points[1][0], points[1][1], marker = 'o', markerfacecolor = 'red')
-    plt.plot(points[2][0], points[2][1], marker = 'o', markerfacecolor = 'red')
+    for i in range (len(points)):
+        plt.plot(points[i][0], points[i][1], marker = 'o', markerfacecolor = 'red')
     plt.show()
