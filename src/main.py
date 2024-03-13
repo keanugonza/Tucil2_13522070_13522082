@@ -1,5 +1,6 @@
 from lib.Visualizer import plot_curve
 import lib.DivideAndConquer as dnc
+import lib.DivideAndConquer2 as dnc2
 import lib.BruteForce as bf
 import time
 import numpy as np
@@ -18,6 +19,15 @@ end_time = time.time()
 # print(curve_points_dc)
 print("Divide and Conquer Approach Time:", end_time - start_time , "ms")
 
+
+# Divide and conquer Execution Time
+bezier = dnc2.DevideAndConquer()
+start_time = time.time()
+bezier.create_bezier(points[0], points[1], points[2])
+end_time = time.time()
+# print(curve_points_dc)
+print("Divide and Conquer Approach Time:", end_time - start_time , "ms")
+
 # Brute force Execution Time
 start_time = time.time()
 curve_points_bf = bf.bezier_bf(points, iterations)
@@ -26,5 +36,12 @@ end_time = time.time()
 print("Brute Force Approach Time:", end_time - start_time, "ms")
 
 # Visualisasi Kurva
-plot_curve(curve_points_dc, points)
-plot_curve(curve_points_bf, points)
+x_dc = [p[0] for p in curve_points_dc]
+y_dc = [p[1] for p in curve_points_dc]
+plot_curve(x_dc, y_dc, points)
+
+plot_curve(bezier.bezierPointsX,bezier.bezierPointsY,points)
+
+x_bf = [p[0] for p in curve_points_bf]
+y_bf = [p[1] for p in curve_points_bf]
+plot_curve(x_bf, y_bf, points)

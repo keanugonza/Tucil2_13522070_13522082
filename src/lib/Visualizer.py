@@ -3,10 +3,8 @@ import numpy
 from mpl_toolkits import mplot3d
 
 # Menggunakan kakas matplotlib untuk visualisasinya
-def plot_curve(curve_points, points):
-    x = [p[0] for p in curve_points]
-    y = [p[1] for p in curve_points]
-    plt.plot(x, y, marker='o')
+def plot_curve(x, y, points):
+    plt.plot(x, y)
     plt.title('Bézier Curve')
     plt.xlabel('X')
     plt.ylabel('Y')
