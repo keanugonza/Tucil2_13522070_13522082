@@ -2,7 +2,8 @@ import numpy
 import math
 
 # Algoritma Brute Force
-def bezier_bf(points, precision=0.02):
+def bezier_bf(points, iteration):
+    precision = 1.0/iteration
     points_fix = [points[0]]  
     t = 0
     while t <= 1:
