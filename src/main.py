@@ -14,17 +14,17 @@ iterations = int(input("Masukkan jumlah iterasi: "))
 # Divide and conquer Execution Time
 start_time = time.time()
 curve_points_dc = dnc.bezier_dnc(n, points, iterations)
-print(curve_points_dc)
 end_time = time.time()
+print(curve_points_dc)
 print("Divide and Conquer Approach Time:", end_time - start_time , "ms")
 
 # Brute force Execution Time
 start_time = time.time()
 curve_points_bf = bf.bezier_bf(points)
-print(curve_points_bf)
 end_time = time.time()
+print(curve_points_bf)
 print("Brute Force Approach Time:", end_time - start_time, "ms")
 
 # Visualisasi Kurva
-plot_curve(curve_points_dc)
-plot_curve(curve_points_bf)
+plot_curve(curve_points_dc, points)
+plot_curve(curve_points_bf, points)
