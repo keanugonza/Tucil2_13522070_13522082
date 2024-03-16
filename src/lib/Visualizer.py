@@ -4,7 +4,7 @@ from mpl_toolkits import mplot3d
 
 # Menggunakan kakas matplotlib untuk visualisasinya
 def plot_curve(x, y, points):
-    plt.plot(x, y)
+    plt.plot(x, y, marker = "o")
     plt.title('Bézier Curve')
     plt.xlabel('X')
     plt.ylabel('Y')

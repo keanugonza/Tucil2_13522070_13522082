@@ -1,30 +1,51 @@
-import matplotlib.pyplot as plt
-import time
+import numpy as np
 
 class DevideAndConquer:
     def __init__(self):
-        self.resultPointsX = []
-        self.resultPointsY = []
+        self.resultPoints = []
+        self.new_points = []
 
     def titikTengah(self, point1, point2):
         x = (point1[0] + point2[0]) / 2
         y = (point1[1] + point2[1]) / 2
         return (x, y )
+    
+    def titikTengah_N(self, points):
+        if len(points) == 2:
+            return self.titikTengah(points[0], points[1])
+        else:
+            newPoints = []
+            add_new_points = []
+            for i in range (len(points) -1):
+                temp = (self.titikTengah(points[i], points[i+1]))
+                newPoints.append(temp)
+                if i == 0 or i == (len(points) - 2):
+                    add_new_points.append(temp)
+            panjang = len(self.new_points)//2
+            self.new_points.insert(panjang, add_new_points[1])
+            self.new_points.insert(panjang, add_new_points[0])
+            return self.titikTengah_N(newPoints)
 
-    def newCoordinate(self, point1, point2, point3, iterationNow, iterations):
+    def newCoordinate_N(self, points, iterationNow, iterations):
         if iterationNow < iterations:
             iterationNow += 1
-            titikTengah1 = self.titikTengah(point1, point2)
-            titikTengah2 = self.titikTengah(point2, point3)
-            titikTengah3 = self.titikTengah(titikTengah1, titikTengah2)
-            self.newCoordinate(point1, titikTengah1, titikTengah3, iterationNow, iterations)  # bagian kiri 
-            self.resultPointsX.append(titikTengah3[0]) 
-            self.resultPointsY.append(titikTengah3[1])  
-            self.newCoordinate(titikTengah3, titikTengah2, point3, iterationNow, iterations)  # bagian kanan
+            self.new_points.clear()
 
-    def create_bezier(self, ctrl1, ctrl2, ctrl3, iterations):
-        self.resultPointsX.append(ctrl1[0])  
-        self.resultPointsY.append(ctrl1[1])  
-        self.newCoordinate(ctrl1, ctrl2, ctrl3, 0, iterations)
-        self.resultPointsX.append(ctrl3[0])  
-        self.resultPointsY.append(ctrl3[1])  
+            titikTengah = self.titikTengah_N(points)
+            split = np.array_split(self.new_points,2)
+
+            left_points = split[0].tolist()
+            right_points = split[1].tolist()
+            left_points.insert(0, points[0])
+            left_points.append(titikTengah)
+            right_points.insert(0, titikTengah)
+            right_points.append(points[-1])
+
+            self.newCoordinate_N(left_points, iterationNow, iterations)  # bagian kiri 
+            self.resultPoints.append(titikTengah)  
+            self.newCoordinate_N(right_points, iterationNow, iterations)  # bagian kanan
+
+    def create_bezier(self, points, iterations):
+        self.resultPoints.append(points[0])   
+        self.newCoordinate_N(points, 0, iterations)
+        self.resultPoints.append(points[-1]) 
