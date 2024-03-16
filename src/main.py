@@ -16,23 +16,23 @@ n, points, iterations = ih.get_points()
 # iterations = int(input("Masukkan jumlah iterasi: "))
 
 # Divide and conquer Execution Time
-start_time = time.time()
-curve_points_dc = dnc.bezier_dnc(n, points, iterations)
-end_time = time.time()
-print("Divide and Conquer Approach Time:", end_time - start_time , "ms")
+# start_time = time.time()
+# curve_points_dc = dnc.bezier_dnc(n, points, iterations)
+# end_time = time.time()
+# print("Divide and Conquer Approach Time:", end_time - start_time , "ms")
 
 # Divide and conquer Execution Time
 bezier = dnc2.DevideAndConquer()
 start_time = time.time()
-bezier.create_bezier(points[0], points[1], points[2], iterations)
+bezier.create_bezier(points, iterations)
 end_time = time.time()
 print("Divide and Conquer Approach Time:", end_time - start_time , "ms")
 
 # Brute force Execution Time
-start_time = time.time()
-curve_points_bf = bf.bezier_bf(points, iterations)
-end_time = time.time()
-print("Brute Force Approach Time:", end_time - start_time, "ms")
+# start_time = time.time()
+# curve_points_bf = bf.bezier_bf(points, iterations)
+# end_time = time.time()
+# print("Brute Force Approach Time:", end_time - start_time, "ms")
 
 # Brute force Execution Time
 start_time = time.time()
@@ -41,15 +41,15 @@ end_time = time.time()
 print("Brute Force Approach Time:", end_time - start_time, "ms")
 
 # Visualisasi Kurva
-x_dc = [p[0] for p in curve_points_dc]
-y_dc = [p[1] for p in curve_points_dc]
-plot_curve(x_dc, y_dc, points)
+# x_dc = [p[0] for p in curve_points_dc]
+# y_dc = [p[1] for p in curve_points_dc]
+# plot_curve(x_dc, y_dc, points)
 
 plot_curve(bezier.resultPointsX,bezier.resultPointsY,points)
 
-x_bf = [p[0] for p in curve_points_bf]
-y_bf = [p[1] for p in curve_points_bf]
-plot_curve(x_bf, y_bf, points)
+# x_bf = [p[0] for p in curve_points_bf]
+# y_bf = [p[1] for p in curve_points_bf]
+# plot_curve(x_bf, y_bf, points)
 
 x_bfp = [p[0] for p in curve_points_bfp]
 y_bfp = [p[1] for p in curve_points_bfp]
