@@ -1,6 +1,6 @@
 import numpy as np
 
-class DevideAndConquer:
+class DevideAndConquerBonus:
     def __init__(self):
         self.resultPoints = []
         self.new_points = []
@@ -49,3 +49,4 @@ class DevideAndConquer:
         self.resultPoints.append(points[0])   
         self.newCoordinate_N(points, 0, iterations)
         self.resultPoints.append(points[-1]) 
+        # print("ini dnc bonus")

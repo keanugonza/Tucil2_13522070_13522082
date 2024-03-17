@@ -19,6 +19,7 @@ def pascal_function(n, t):
     return result
 
 def bezier_pascal(points, iteration):
+    # print("ini bf bonus")
     precision = 1.0/2**iteration
     points_fix = []  
     t = 0

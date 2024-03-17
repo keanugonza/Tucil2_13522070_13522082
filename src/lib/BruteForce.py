@@ -3,6 +3,7 @@ import math
 
 # Algoritma Brute Force
 def bezier_bf(points, iteration):
+    # print("ini bf biasa")
     precision = 1.0/2**iteration
     points_fix = [points[0]]  
     t = 0

@@ -1,22 +1,31 @@
-import numpy
-import math
+import matplotlib.pyplot as plt
+import time
 
-def midpoint(p1, p2):
-    return ((p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2)
+class DevideAndConquer:
+    def __init__(self):
+        self.resultPointsX = []
+        self.resultPointsY = []
 
-# Algoritma Divide and Conquer
-def bezier_dnc(n, points, iterations):
-    # Base case
-    if iterations == 0:
-        return [points[0], points[n - 1]]
-    
-    # Divide
-    q0 = midpoint(points[0], points[1])
-    q1 = midpoint(points[1], points[2])
-    r0 = midpoint(q0, q1)
-    
-    # Conquer
-    left_curve = bezier_dnc(n, [points[0], q0, r0], iterations - 1)
-    right_curve = bezier_dnc(n, [r0, q1, points[2]], iterations - 1)
-    
-    return left_curve[:-1] + [r0] + right_curve[1:]
+    def titikTengah(self, point1, point2):
+        x = (point1[0] + point2[0]) / 2
+        y = (point1[1] + point2[1]) / 2
+        return (x, y )
+
+    def newCoordinate(self, point1, point2, point3, iterationNow, iterations):
+        if iterationNow < iterations:
+            iterationNow += 1
+            titikTengah1 = self.titikTengah(point1, point2)
+            titikTengah2 = self.titikTengah(point2, point3)
+            titikTengah3 = self.titikTengah(titikTengah1, titikTengah2)
+            self.newCoordinate(point1, titikTengah1, titikTengah3, iterationNow, iterations)  # bagian kiri 
+            self.resultPointsX.append(titikTengah3[0]) 
+            self.resultPointsY.append(titikTengah3[1])  
+            self.newCoordinate(titikTengah3, titikTengah2, point3, iterationNow, iterations)  # bagian kanan
+
+    def create_bezier(self, points, iterations):
+        # print('ini dnc biasa')
+        self.resultPointsX.append(points[0][0])  
+        self.resultPointsY.append(points[0][1])  
+        self.newCoordinate(points[0], points[1], points[2], 0, iterations)
+        self.resultPointsX.append(points[2][0])  
+        self.resultPointsY.append(points[2][1])
