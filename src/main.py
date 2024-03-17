@@ -28,7 +28,7 @@ bezier = dnc2.DevideAndConquer()
 start_time = time.time()
 bezier.create_bezier(points, iterations)
 end_time = time.time()
-print("Divide and Conquer Approach Time:", end_time - start_time , "ms")
+print("Divide and Conquer Approach Time:", end_time - start_time , "s")
 
 # Brute force Execution Time
 '''
@@ -41,8 +41,9 @@ print("Brute Force Approach Time:", end_time - start_time, "ms")
 # Brute force Execution Time
 start_time = time.time()
 curve_points_bfp = bfp.bezier_pascal(points, iterations)
+print(curve_points_bfp)
 end_time = time.time()
-print("Brute Force Approach Time:", end_time - start_time, "ms")
+print("Brute Force Approach Time:", end_time - start_time, "s")
 
 # Visualisasi Kurva
 '''
@@ -51,7 +52,9 @@ y_dc = [p[1] for p in curve_points_dc]
 plot_curve(x_dc, y_dc, points)
 '''
 
-plot_curve(bezier.resultPointsX,bezier.resultPointsY,points)
+x_dc2 = [p[0] for p in bezier.resultPoints]
+y_dc2 = [p[1] for p in bezier.resultPoints]
+plot_curve(x_dc2,y_dc2,points)
 
 # x_bf = [p[0] for p in curve_points_bf]
 # y_bf = [p[1] for p in curve_points_bf]
