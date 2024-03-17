@@ -83,6 +83,9 @@ class Solver:
         fig, ax = plt.subplots(figsize=(6.5, 4.5))
         ax.plot(x, y)
         ax.plot(x, y, marker='o', markerfacecolor='blue')
+        x2 = [p2[0] for p2 in points]
+        y2 = [p2[1] for p2 in points]
+        ax.plot(x2, y2)
         for i in range(len(points)):
             ax.plot(points[i][0], points[i][1], marker='o', markerfacecolor='red')
         canvas = FigureCanvasTkAgg(fig, master=page1)
@@ -214,21 +217,21 @@ page1.configure(bg='#FFFFFF')
 n_path = resource_path("assets/jumlah.png")
 n_img = PhotoImage(file=n_path)
 Label(page1, image=n_img, bg='#FFFFFF').place(x=30, y=30)
-n_input = Entry(page1, width=2, border=0, font=('Microsoft YaHei UI',16), bg='#C5A2C6', fg='#5D5EAA', highlightthickness=0)
+n_input = Entry(page1, width=2, border=0, font=('Comic Sans MS', 16, 'bold'), bg='#C5A2C6', fg='#5D5EAA', highlightthickness=0)
 n_input.place(x=90, y=90)
 
 # Iterasi
 iterasi_path = resource_path("assets/Iterasi.png")
 iterasi_img = PhotoImage(file=iterasi_path)
 Label(page1, image=iterasi_img, bg='#FFFFFF').place(x=30, y=160)
-iterasi_input = Entry(page1, width=2, border=0, font=('Microsoft YaHei UI',16), bg='#C5A2C6', fg='#5D5EAA', highlightthickness=0)
+iterasi_input = Entry(page1, width=2, border=0, font=('Comic Sans MS', 16, 'bold'), bg='#C5A2C6', fg='#5D5EAA', highlightthickness=0)
 iterasi_input.place(x=90, y=220)
 
 # Control Point
 control_path = resource_path("assets/control.png")
 control_img = PhotoImage(file=control_path)
 Label(page1, image=control_img, bg='#FFFFFF').place(x=30, y=290)
-control_input = Text(page1, width=12, height=10, border=0, font=('Microsoft YaHei UI', 16), bg='#F1E3F0', fg='#5D5EAA', highlightthickness=0)
+control_input = Text(page1, width=12, height=8, border=0, font=('Comic Sans MS', 16, 'bold'), bg='#F1E3F0', fg='#5D5EAA', highlightthickness=0)
 control_input.place(x=50, y=330)
 
 # Background Kurva
@@ -240,27 +243,27 @@ Label(page1, image=bgc_img, bg='#FFFFFF').place(x=220, y=10)
 time2_path = resource_path("assets/time.png")
 time2_img = PhotoImage(file=time2_path)
 Label(page1, image=time2_img, bg='#FFFFFF').place(x=395, y=590)
-time2_result = Label(page1, text="", font=('Microsoft YaHei UI',16), bg='#F1E3F0', fg='#5D5EAA')
+time2_result = Label(page1, text="", font=('Comic Sans MS', 16, 'bold'), bg='#F1E3F0', fg='#5D5EAA')
 time2_result.place(x=420, y=620)
 
 # Time Divide and Conquere
 time_path = resource_path("assets/time.png")
 time_img = PhotoImage(file=time_path)
 Label(page1, image=time_img, bg='#FFFFFF').place(x=790, y=590)
-time_result = Label(page1, text="", font=('Microsoft YaHei UI',16), bg='#F1E3F0', fg='#5D5EAA')
+time_result = Label(page1, text="", font=('Comic Sans MS', 16, 'bold'), bg='#F1E3F0', fg='#5D5EAA')
 time_result.place(x=815, y=620)
 
 # Brute Force
 dnc_path = resource_path("assets/bf.png")
 dnc_img = PhotoImage(file=dnc_path)
 Label(page1, image=dnc_img, bg='#FFFFFF').place(x=210, y=610)
-dnc_result = Label(page1, text="", font=('Microsoft YaHei UI',16), bg='#F1E3F0', fg='#5D5EAA')
+dnc_result = Label(page1, text="", font=('Comic Sans MS', 16, 'bold'), bg='#F1E3F0', fg='#5D5EAA')
 
 # Divide n Conquer
 bf_path = resource_path("assets/dnc.png")
 bf_img = PhotoImage(file=bf_path)
 Label(page1, image=bf_img, bg='#FFFFFF').place(x=600, y=610)
-bf_result = Label(page1, text="", font=('Microsoft YaHei UI',16), bg='#F1E3F0', fg='#5D5EAA')
+bf_result = Label(page1, text="", font=('Comic Sans MS', 16, 'bold'), bg='#F1E3F0', fg='#5D5EAA')
 
 # Start
 start_path = resource_path("assets/start.png")
