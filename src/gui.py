@@ -2,11 +2,12 @@ import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
 from PIL import Image, ImageTk
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-import random, time, os
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
+import time, os
 import numpy as np
 import sys
 import matplotlib.pyplot as plt
+from matplotlib.figure import Figure 
 
 # Algortima Divide and Conquer 
 class Solver:
@@ -59,13 +60,12 @@ class Solver:
         self.newCoordinate_N(points, 0, iterations)
         self.resultPoints.append(points[-1])
 
-    def solve(self, n, iterations, points):
+    def solve(self, iterations, points):
         # Timer proses
         start_time = time.time()
         self.create_bezier(points, iterations)
         end_time = time.time()
         points_fix = self.resultPoints
-        print(points_fix)
 
         # Menghitung waktu proses
         global timer
@@ -76,6 +76,57 @@ class Solver:
 
         # Menampilkan waktu proses pada GUI
         time_result.config(text=f'{timer} ms')
+
+        # Menampilkan kurva
+
+
+class Solver2:
+    def pascal_triangle(n):
+        triangle = [[0] * (n + 1) for _ in range(n + 1)]
+        for line in range(n + 1):
+            for i in range(line + 1):
+                if i == 0 or i == line:
+                    triangle[line][i] = 1
+                else:
+                    triangle[line][i] = triangle[line - 1][i - 1] + triangle[line - 1][i]
+        return triangle
+
+    def pascal_function(n, t):
+        triangle = Solver2.pascal_triangle(n)
+        result = []
+        for i in range(n + 1):
+            coeff = triangle[n][i] * ((1 - t) ** (n - i)) * (t ** i)
+            result.append(coeff)
+        return result
+
+    def bezier_pascal(points, iteration):
+        precision = 1.0/2**iteration
+        points_fix = []  
+        t = 0
+        n = len(points) - 1
+        while t <= 1:
+            pascal_coefficients = Solver2.pascal_function(n, t)
+            x = np.sum([coeff * point[0] for coeff, point in zip(pascal_coefficients, points)])
+            y = np.sum([coeff * point[1] for coeff, point in zip(pascal_coefficients, points)])
+            points_fix.append((x, y))  
+            t += precision
+        return points_fix
+
+    def solve2(self, points, iterations):
+        # Timer proses
+        start_time2 = time.time()
+        Solver2.bezier_pascal(points, iterations)
+        end_time2 = time.time()
+        
+        # Menghitung waktu proses
+        global timer
+        timer2 = round((end_time2 - start_time2) * 1000, 5)
+
+        # Output hasil
+        print("Brute Force Approach Time:", timer2, "ms")
+
+        # Menampilkan waktu proses pada GUI
+        time2_result.config(text=f'{timer2} ms')
 
 def point_split(input):
     lines = input.split("\n")
@@ -126,7 +177,9 @@ def solve_keyboard():
         messagebox.showerror("Error", "Please complete the input")
         return
     solver_obj = Solver()
-    solver_obj.solve(n, iterations, points)
+    solver_obj2 = Solver2()
+    solver_obj.solve(iterations, points)
+    solver_obj2.solve2(points, iterations)
 
 ################### TKINTER GUI ###################
 window = Tk()
@@ -174,21 +227,28 @@ bgc_path = resource_path("assets/bgcurva.png")
 bgc_img = PhotoImage(file=bgc_path)
 Label(page1, image=bgc_img, bg='#FFFFFF').place(x=220, y=10)
 
-# Time Brute 
+# Time Brute Force
+time2_path = resource_path("assets/time.png")
+time2_img = PhotoImage(file=time2_path)
+Label(page1, image=time2_img, bg='#FFFFFF').place(x=395, y=590)
+time2_result = Label(page1, text="", font=('Microsoft YaHei UI',16), bg='#F1E3F0', fg='#5D5EAA')
+time2_result.place(x=420, y=620)
+
+# Time Divide and Conquere
 time_path = resource_path("assets/time.png")
 time_img = PhotoImage(file=time_path)
 Label(page1, image=time_img, bg='#FFFFFF').place(x=790, y=590)
 time_result = Label(page1, text="", font=('Microsoft YaHei UI',16), bg='#F1E3F0', fg='#5D5EAA')
 time_result.place(x=815, y=620)
 
-# Divide n Conquer
-dnc_path = resource_path("assets/dnc.png")
+# Brute Force
+dnc_path = resource_path("assets/bf.png")
 dnc_img = PhotoImage(file=dnc_path)
 Label(page1, image=dnc_img, bg='#FFFFFF').place(x=210, y=610)
 dnc_result = Label(page1, text="", font=('Microsoft YaHei UI',16), bg='#F1E3F0', fg='#5D5EAA')
 
-# Brute Force
-bf_path = resource_path("assets/bf.png")
+# Divide n Conquer
+bf_path = resource_path("assets/dnc.png")
 bf_img = PhotoImage(file=bf_path)
 Label(page1, image=bf_img, bg='#FFFFFF').place(x=600, y=610)
 bf_result = Label(page1, text="", font=('Microsoft YaHei UI',16), bg='#F1E3F0', fg='#5D5EAA')

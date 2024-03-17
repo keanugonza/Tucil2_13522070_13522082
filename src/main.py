@@ -41,7 +41,6 @@ print("Brute Force Approach Time:", end_time - start_time, "ms")
 # Brute force Execution Time
 start_time = time.time()
 curve_points_bfp = bfp.bezier_pascal(points, iterations)
-print(curve_points_bfp)
 end_time = time.time()
 print("Brute Force Approach Time:", end_time - start_time, "s")
 
