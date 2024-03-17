@@ -8,6 +8,7 @@ import time
 import numpy as np
 import os
 import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
 
 # Input
 n, points, iterations = ih.get_points()

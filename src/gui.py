@@ -8,6 +8,7 @@ import numpy as np
 import sys
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure 
+from matplotlib.animation import FuncAnimation
 
 # Algortima Divide and Conquer 
 class Solver:
@@ -65,7 +66,6 @@ class Solver:
         start_time = time.time()
         self.create_bezier(points, iterations)
         end_time = time.time()
-        points_fix = self.resultPoints
 
         # Menghitung waktu proses
         global timer
@@ -78,7 +78,16 @@ class Solver:
         time_result.config(text=f'{timer} ms')
 
         # Menampilkan kurva
-
+        x = [p[0] for p in self.resultPoints]
+        y = [p[1] for p in self.resultPoints]
+        fig, ax = plt.subplots(figsize=(6.5, 4.5))
+        ax.plot(x, y)
+        ax.plot(x, y, marker='o', markerfacecolor='blue')
+        for i in range(len(points)):
+            ax.plot(points[i][0], points[i][1], marker='o', markerfacecolor='red')
+        canvas = FigureCanvasTkAgg(fig, master=page1)
+        canvas.get_tk_widget().place(x=264, y=110)  
+        canvas.draw()
 
 class Solver2:
     def pascal_triangle(n):
