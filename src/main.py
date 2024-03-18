@@ -1,5 +1,4 @@
-from lib.Visualizer import plot_curve
-from lib.Visualizer import plot_curve_animation
+from lib.Visualizer import animate_curve
 import lib.DivideAndConquer as dnc
 import lib.DivideAndConquerBonus as dnc_bonus
 import lib.BruteForce as bf
@@ -33,10 +32,8 @@ if (n == 3):
         curve_points_dnc.append(temp)
 
     #Visualisasi kurva
-    plot_curve(curve_points_dnc, points, "Divide and Conquer")
-    ani = plot_curve_animation(curve_points_dnc, points, "Divide and Conquer")
-    print(curve_points_dnc)
-    plot_curve(curve_points_bf, points, "Brute Force")
+    animate_curve(curve_points_dnc, points, "Divide and Conquer")
+    animate_curve(curve_points_bf, points, "Brute Force")
 
 
 else:
@@ -54,5 +51,5 @@ else:
     print("Brute Force Approach Time:", end_time - start_time, "s")
 
     #Visualisasi kurva
-    plot_curve(bezier_dnc.resultPoints, points, "Divide and Conquer")
-    plot_curve(curve_points_bf, points, "Brute Force")
+    animate_curve(bezier_dnc.resultPoints, points, "Divide and Conquer")
+    animate_curve(curve_points_bf, points, "Brute Force")

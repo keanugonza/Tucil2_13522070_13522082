@@ -2,13 +2,14 @@ import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
 from PIL import Image, ImageTk
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import time, os
 import numpy as np
 import sys
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure 
 from matplotlib.animation import FuncAnimation
+import matplotlib.animation as animation
 
 # Algortima Divide and Conquer 
 class Solver:
@@ -78,20 +79,50 @@ class Solver:
         time_result.config(text=f'{timer} ms')
 
         # Menampilkan kurva
+        '''
         x = [p[0] for p in self.resultPoints]
         y = [p[1] for p in self.resultPoints]
         fig, ax = plt.subplots(figsize=(6.5, 4.5))
         ax.plot(x, y)
-        ax.plot(x, y, marker='o', markerfacecolor='blue')
+        ax.plot(x, y, marker='.', markerfacecolor='blue')
+        '''
+        fig, ax = plt.subplots(figsize=(6.5, 4.5))
+        scat = ax.scatter([], [], s=5)
+        line, = ax.plot([], [])
         x2 = [p2[0] for p2 in points]
         y2 = [p2[1] for p2 in points]
         ax.plot(x2, y2)
         for i in range(len(points)):
             ax.plot(points[i][0], points[i][1], marker='o', markerfacecolor='red')
+        # Get min and max coordinates
+        all_x = [x[0] for x in self.resultPoints + points]
+        all_y = [x[1] for x in self.resultPoints + points]
+        min_x, max_x = min(all_x) - 10, max(all_x) + 10
+        min_y, max_y = min(all_y) - 10, max(all_y) + 10
+        ax.set( xlim=[min_x, max_x], 
+                ylim=[min_y, max_y], 
+                xlabel='X', 
+                ylabel='Y', 
+                title="Bézier Curve")
+        ax.legend()
+
+        # Animation update function
+        def update(frame):
+            x = [p[0] for p in self.resultPoints[:frame]]
+            y = [p[1] for p in self.resultPoints[:frame]]
+            data = np.stack([x, y]).T
+            scat.set_offsets(data)
+            line.set_xdata(x)
+            line.set_ydata(y)
+            return scat, line
+
+        # Create the animation
+        ani = animation.FuncAnimation(fig, update, frames=len(self.resultPoints) + 1, interval=150)
         canvas = FigureCanvasTkAgg(fig, master=page1)
         canvas.get_tk_widget().place(x=264, y=110)  
         canvas.draw()
 
+# Algoritma Pembanding : Brute Force
 class Solver2:
     def pascal_triangle(n):
         triangle = [[0] * (n + 1) for _ in range(n + 1)]
@@ -156,12 +187,12 @@ def starting():
     global t
     points_fix = []
 
-# ASSETS PATH
+# Assets Path
 def resource_path(relative_path):
     base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
     return os.path.join(base_path, relative_path)
 
-# INPUT KEYBOARD 
+# Input Keyboard
 def open_keyboard_input():
     global iterations
     global n
@@ -217,14 +248,14 @@ page1.configure(bg='#FFFFFF')
 n_path = resource_path("assets/jumlah.png")
 n_img = PhotoImage(file=n_path)
 Label(page1, image=n_img, bg='#FFFFFF').place(x=30, y=30)
-n_input = Entry(page1, width=2, border=0, font=('Comic Sans MS', 16, 'bold'), bg='#C5A2C6', fg='#5D5EAA', highlightthickness=0)
+n_input = Entry(page1, width=2, border=0, font=('Comic Sans MS', 16, 'bold'), bg='#C5A2C6', fg='#FFFFFF', highlightthickness=0)
 n_input.place(x=90, y=90)
 
 # Iterasi
 iterasi_path = resource_path("assets/Iterasi.png")
 iterasi_img = PhotoImage(file=iterasi_path)
 Label(page1, image=iterasi_img, bg='#FFFFFF').place(x=30, y=160)
-iterasi_input = Entry(page1, width=2, border=0, font=('Comic Sans MS', 16, 'bold'), bg='#C5A2C6', fg='#5D5EAA', highlightthickness=0)
+iterasi_input = Entry(page1, width=2, border=0, font=('Comic Sans MS', 16, 'bold'), bg='#C5A2C6', fg='#FFFFFF', highlightthickness=0)
 iterasi_input.place(x=90, y=220)
 
 # Control Point
