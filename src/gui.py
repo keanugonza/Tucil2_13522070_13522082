@@ -106,7 +106,6 @@ class Solver:
                 xlabel='X', 
                 ylabel='Y', 
                 title="Bézier Curve")
-        ax.legend()
 
         # Animation update function
         def update(frame):
@@ -301,10 +300,8 @@ bf_result = Label(page1, text="", font=('Comic Sans MS', 16, 'bold'), bg='#F1E3F
 # Start
 start_path = resource_path("assets/start.png")
 start_img = PhotoImage(file=start_path)
-start_label = Label(page1, image=start_img, bg='#FFFFFF')
-start_label.place(x=30, y=590)
-start_btn = Button(page1, text='S T A R T', height = 1, width = 7, relief=FLAT, command=solve_keyboard)
-start_btn.place(x=55, y=605)
+start_img_btn = Button(page1, image = start_img, bg='#FFFFFF', bd=0, command=solve_keyboard)
+start_img_btn.place(x=30, y=590)
 
 # END
 window.mainloop()
