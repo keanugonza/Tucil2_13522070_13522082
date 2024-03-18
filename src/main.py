@@ -32,8 +32,8 @@ if (n == 3):
         curve_points_dnc.append(temp)
 
     #Visualisasi kurva
-    plot_curve(curve_points_dnc, points, "Divide and Conquer")
-    plot_curve(curve_points_bf, points, "Brute Force")
+    plot_curve(curve_points_dnc, points, "Divide and Conquer",iterations)
+    plot_curve(curve_points_bf, points, "Brute Force",iterations)
 
 
 else:
@@ -51,5 +51,5 @@ else:
     print("Brute Force Approach Time:", end_time - start_time, "ms")
 
     #Visualisasi kurva
-    plot_curve(bezier_dnc.resultPoints, points, "Divide and Conquer")
-    plot_curve(curve_points_bf, points, "Brute Force")
+    plot_curve(bezier_dnc.resultPoints, points, "Divide and Conquer",iterations)
+    plot_curve(curve_points_bf, points, "Brute Force",iterations)

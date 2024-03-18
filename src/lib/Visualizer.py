@@ -3,10 +3,10 @@ import numpy as np
 import matplotlib.animation as animation
 
 # Menggunakan kakas matplotlib untuk visualisasinya
-def plot_curve(result, points, title):
+def plot_curve(result, points, title,i):
     x = [p[0] for p in result]
     y = [p[1] for p in result]
-    plt.title(f"Bézier Curve {title}")
+    plt.title(f"Bézier Curve {title}\n Iteration {i}")
     plt.xlabel('X')
     plt.ylabel('Y')
     plt.grid(True)
