@@ -97,8 +97,10 @@ class Solver:
         # Get min and max coordinates
         all_x = [x[0] for x in self.resultPoints + points]
         all_y = [x[1] for x in self.resultPoints + points]
-        min_x, max_x = min(all_x) - 10, max(all_x) + 10
-        min_y, max_y = min(all_y) - 10, max(all_y) + 10
+        rentangX = max(all_x) - min(all_x)
+        rentangY = max(all_y) - min(all_y)
+        min_x, max_x = (min(all_x) - (0.1*rentangX)), (max(all_x) + (0.1*rentangX))
+        min_y, max_y = (min(all_y) - (0.1*rentangY)), (max(all_y) + (0.1*rentangY))
         ax.set( xlim=[min_x, max_x], 
                 ylim=[min_y, max_y], 
                 xlabel='X', 
