@@ -118,7 +118,10 @@ class Solver:
             return scat, line
 
         # Create the animation
-        ani = animation.FuncAnimation(fig, update, frames=len(self.resultPoints) + 1, interval=50)
+        if (iterations <= 5) :
+            ani = animation.FuncAnimation(fig, update, frames=len(self.resultPoints) + 1, interval=50)
+        else :
+            ani = animation.FuncAnimation(fig, update, frames=len(self.resultPoints) + 1, interval=25)
         canvas = FigureCanvasTkAgg(fig, master=page1)
         canvas.get_tk_widget().place(x=264, y=110)  
         canvas.draw()
@@ -194,7 +197,7 @@ def resource_path(relative_path):
     return os.path.join(base_path, relative_path)
 
 # Input Keyboard
-def open_keyboard_input():
+def input_keyboard():
     global iterations
     global n
     global points
@@ -216,8 +219,8 @@ def open_keyboard_input():
 
     return n, iterations, points
 
-def solve_keyboard():
-    if open_keyboard_input() == None:
+def solve_bezier():
+    if input_keyboard() == None:
         messagebox.showerror("Error", "Please complete the input")
         return
     solver_obj = Solver()
@@ -300,7 +303,7 @@ bf_result = Label(page1, text="", font=('Comic Sans MS', 16, 'bold'), bg='#F1E3F
 # Start
 start_path = resource_path("assets/start.png")
 start_img = PhotoImage(file=start_path)
-start_img_btn = Button(page1, image = start_img, bg='#FFFFFF', bd=0, command=solve_keyboard)
+start_img_btn = Button(page1, image = start_img, bg='#FFFFFF', bd=0, command=solve_bezier)
 start_img_btn.place(x=30, y=590)
 
 # END
