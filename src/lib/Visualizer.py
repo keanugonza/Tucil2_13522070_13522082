@@ -16,7 +16,7 @@ def plot_curve(result, points, title):
     plt.plot(xp,yp, marker = "o", markerfacecolor = 'red')
     plt.show()
 
-# Menggunakan kakas matplotlib untuk visualisasi animasi titik per titik
+# Menggunakan kakas matplotlib untuk visualisasi animasi titik per titik pada GUI
 def animate_curve(results, points, title):
     fig, ax = plt.subplots()
     scat = ax.scatter([], [], s=5)
