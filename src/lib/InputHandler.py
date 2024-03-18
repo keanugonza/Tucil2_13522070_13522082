@@ -1,6 +1,3 @@
-import numpy
-from numpy.random import Generator, PCG64
-
 def get_points():
     while True:
         try:

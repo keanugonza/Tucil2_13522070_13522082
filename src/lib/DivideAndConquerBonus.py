@@ -1,15 +1,17 @@
 import numpy as np
 
-class DevideAndConquerBonus:
+class DivideAndConquerBonus:
     def __init__(self):
         self.resultPoints = []
         self.new_points = []
 
+    #mencari titik tengah antar 2 titik
     def titikTengah(self, point1, point2):
         x = (point1[0] + point2[0]) / 2
         y = (point1[1] + point2[1]) / 2
         return (x, y )
     
+    #mencari titik tengah dari N titik
     def titikTengah_N(self, points):
         if len(points) == 2:
             return self.titikTengah(points[0], points[1])
@@ -26,14 +28,17 @@ class DevideAndConquerBonus:
             self.new_points.insert(panjang, add_new_points[0])
             return self.titikTengah_N(newPoints)
 
+    #membuat array berisi titik-titik tengah sesuai iterasi
     def newCoordinate_N(self, points, iterationNow, iterations):
         if iterationNow < iterations:
             iterationNow += 1
-            self.new_points.clear()
 
+            #mencari titiik tengah
+            self.new_points.clear()
             titikTengah = self.titikTengah_N(points)
             split = np.array_split(self.new_points,2)
 
+            #menambahkan titik di kiri dan di kanan titik tengah untuk diiterasi lagi
             left_points = split[0].tolist()
             right_points = split[1].tolist()
             left_points.insert(0, points[0])
@@ -41,12 +46,14 @@ class DevideAndConquerBonus:
             right_points.insert(0, titikTengah)
             right_points.append(points[-1])
 
-            self.newCoordinate_N(left_points, iterationNow, iterations)  # bagian kiri 
-            self.resultPoints.append(titikTengah)  
-            self.newCoordinate_N(right_points, iterationNow, iterations)  # bagian kanan
+            # mencari titik tengah dari N titik di kiri
+            self.newCoordinate_N(left_points, iterationNow, iterations)
+            self.resultPoints.append(titikTengah)   #append titik tengah ke array result
+            # mencari titik tengah dari N titik di kanan
+            self.newCoordinate_N(right_points, iterationNow, iterations)
 
+    #membentuk kurva bezier
     def create_bezier(self, points, iterations):
-        self.resultPoints.append(points[0])   
-        self.newCoordinate_N(points, 0, iterations)
-        self.resultPoints.append(points[-1]) 
-        # print("ini dnc bonus")
+        self.resultPoints.append(points[0])    #append titik awal
+        self.newCoordinate_N(points, 0, iterations)     #cari titik titik tengah sesuai iterasi
+        self.resultPoints.append(points[-1])  #append titik akhir

@@ -1,5 +1,6 @@
 import numpy as np
 
+#membuat segitiga pascal
 def pascal_triangle(n):
     triangle = [[0] * (n + 1) for _ in range(n + 1)]
     for line in range(n + 1):
@@ -18,8 +19,8 @@ def pascal_function(n, t):
         result.append(coeff)
     return result
 
+#membentuk titik-titik kurva bezier
 def bezier_pascal(points, iteration):
-    # print("ini bf bonus")
     precision = 1.0/2**iteration
     points_fix = []  
     t = 0

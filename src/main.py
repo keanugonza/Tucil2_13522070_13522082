@@ -1,4 +1,4 @@
-from lib.Visualizer import animate_curve
+from lib.Visualizer import plot_curve
 import lib.DivideAndConquer as dnc
 import lib.DivideAndConquerBonus as dnc_bonus
 import lib.BruteForce as bf
@@ -14,11 +14,11 @@ n, points, iterations = ih.get_points()
 
 if (n == 3):
     # Divide and conquer Execution Time
-    bezier_dnc = dnc.DevideAndConquer()
+    bezier_dnc = dnc.DivideAndConquer()
     start_time = time.time()
     bezier_dnc.create_bezier(points, iterations)
     end_time = time.time()
-    print("Divide and Conquer Approach Time:", end_time - start_time , "s")
+    print("Divide and Conquer Approach Time:", end_time - start_time , "ms")
 
     # Brute force Execution Time
     start_time = time.time()
@@ -32,24 +32,24 @@ if (n == 3):
         curve_points_dnc.append(temp)
 
     #Visualisasi kurva
-    animate_curve(curve_points_dnc, points, "Divide and Conquer")
-    animate_curve(curve_points_bf, points, "Brute Force")
+    plot_curve(curve_points_dnc, points, "Divide and Conquer")
+    plot_curve(curve_points_bf, points, "Brute Force")
 
 
 else:
     # Divide and conquer Execution Time
-    bezier_dnc = dnc_bonus.DevideAndConquerBonus()
+    bezier_dnc = dnc_bonus.DivideAndConquerBonus()
     start_time = time.time()
     bezier_dnc.create_bezier(points, iterations)
     end_time = time.time()
-    print("Divide and Conquer Approach Time:", end_time - start_time , "s")
+    print("Divide and Conquer Approach Time:", end_time - start_time , "ms")
 
     # Brute force Execution Time
     start_time = time.time()
     curve_points_bf = bf_bonus.bezier_pascal(points, iterations)
     end_time = time.time()
-    print("Brute Force Approach Time:", end_time - start_time, "s")
+    print("Brute Force Approach Time:", end_time - start_time, "ms")
 
     #Visualisasi kurva
-    animate_curve(bezier_dnc.resultPoints, points, "Divide and Conquer")
-    animate_curve(curve_points_bf, points, "Brute Force")
+    plot_curve(bezier_dnc.resultPoints, points, "Divide and Conquer")
+    plot_curve(curve_points_bf, points, "Brute Force")
