@@ -11,6 +11,7 @@ from matplotlib.figure import Figure
 from matplotlib.animation import FuncAnimation
 import matplotlib.animation as animation
 
+# Inputan pada GUI dianggap sudah tervalidasi benar sehingga tidak ada handler untuk errornya
 # Algortima Divide and Conquer 
 class Solver:
     def __init__(self):
@@ -61,6 +62,28 @@ class Solver:
         self.resultPoints.append(points[0])
         self.newCoordinate_N(points, 0, iterations)
         self.resultPoints.append(points[-1])
+    
+    def mid_visualize(self, points):
+        midpoints = []
+        for i in range(len(points) - 1):
+            x1, y1 = points[i]
+            x2, y2 = points[i + 1]
+            mid_x = (x1 + x2) / 2
+            mid_y = (y1 + y2) / 2
+            midpoints.append((mid_x, mid_y))
+        return midpoints
+
+    def mid_iterate(self, points, iterations):
+        all_midpoints = [points]
+        for _ in range(iterations):
+            current_points = all_midpoints[-1]
+            new_points = [current_points[0]]
+            for i in range(len(current_points) - 1):
+                midpoints = self.mid_visualize([current_points[i], current_points[i + 1]])
+                new_points.append(midpoints[0])  
+            new_points.append(current_points[-1])
+            all_midpoints.append(new_points)
+        return all_midpoints
 
     def solve(self, iterations, points):
         # Timer proses
@@ -77,51 +100,61 @@ class Solver:
 
         # Menampilkan waktu proses pada GUI
         time_result.config(text=f'{timer} ms')
-
+            
         # Menampilkan kurva
-        '''
-        x = [p[0] for p in self.resultPoints]
-        y = [p[1] for p in self.resultPoints]
-        fig, ax = plt.subplots(figsize=(6.5, 4.5))
-        ax.plot(x, y)
-        ax.plot(x, y, marker='.', markerfacecolor='blue')
-        '''
-        fig, ax = plt.subplots(figsize=(6.5, 4.5))
-        scat = ax.scatter([], [], s=5)
-        line, = ax.plot([], [])
-        x2 = [p2[0] for p2 in points]
-        y2 = [p2[1] for p2 in points]
-        ax.plot(x2, y2)
-        for i in range(len(points)):
-            ax.plot(points[i][0], points[i][1], marker='o', markerfacecolor='red')
-        # Get min and max coordinates
-        all_x = [x[0] for x in self.resultPoints + points]
-        all_y = [x[1] for x in self.resultPoints + points]
-        rentangX = max(all_x) - min(all_x)
-        rentangY = max(all_y) - min(all_y)
-        min_x, max_x = (min(all_x) - (0.1*rentangX)), (max(all_x) + (0.1*rentangX))
-        min_y, max_y = (min(all_y) - (0.1*rentangY)), (max(all_y) + (0.1*rentangY))
-        ax.set( xlim=[min_x, max_x], 
-                ylim=[min_y, max_y], 
-                xlabel='X', 
-                ylabel='Y', 
-                title="Bézier Curve")
+        all_midpoints = self.mid_iterate(points, iterations)
+        if (iterations > 10) :
+            x = [p[0] for p in self.resultPoints]
+            y = [p[1] for p in self.resultPoints]
+            fig, ax = plt.subplots(figsize=(6.5, 4.5))
+            ax.plot(x, y)
+            ax.plot(x, y, marker='.', markerfacecolor='blue')
+            x2 = [p2[0] for p2 in points]
+            y2 = [p2[1] for p2 in points]
+            ax.plot(x2, y2)
+            for i in range(len(points)):
+                ax.plot(points[i][0], points[i][1], marker='o', markerfacecolor='red')
+            ax.set( xlabel='X', 
+                    ylabel='Y', 
+                    title="Bézier Curve")
+        # Jika iterasi lebih dari 10, animasi akan berjalan lambat sehingga langsung dimunculkan hasil akhir saja
+        else : 
+            fig, ax = plt.subplots(figsize=(6.5, 4.5))
+            scat = ax.scatter([], [], s=5)
+            line, = ax.plot([], [])
+            x2 = [p2[0] for p2 in points]
+            y2 = [p2[1] for p2 in points]
+            ax.plot(x2, y2)
+            for i, curve in enumerate(all_midpoints, start=1):
+                x, y = zip(*curve)
+                ax.plot(x, y)
+            for i in range(len(points)):
+                ax.plot(points[i][0], points[i][1], marker='o', markerfacecolor='red')
+            # Mendapatkan ukuran yang sesuai untuk ukuran kurvanya 
+            all_x = [x[0] for x in self.resultPoints + points]
+            all_y = [x[1] for x in self.resultPoints + points]
+            rentangX = max(all_x) - min(all_x)
+            rentangY = max(all_y) - min(all_y)
+            min_x, max_x = (min(all_x) - (0.1*rentangX)), (max(all_x) + (0.1*rentangX))
+            min_y, max_y = (min(all_y) - (0.1*rentangY)), (max(all_y) + (0.1*rentangY))
+            ax.set( xlim=[min_x, max_x], 
+                    ylim=[min_y, max_y], 
+                    xlabel='X', 
+                    ylabel='Y', 
+                    title="Bézier Curve")
 
-        # Animation update function
-        def update(frame):
-            x = [p[0] for p in self.resultPoints[:frame]]
-            y = [p[1] for p in self.resultPoints[:frame]]
-            data = np.stack([x, y]).T
-            scat.set_offsets(data)
-            line.set_xdata(x)
-            line.set_ydata(y)
-            return scat, line
+            # Fungsi animasi update 
+            def update(frame):
+                x = [p[0] for p in self.resultPoints[:frame]]
+                y = [p[1] for p in self.resultPoints[:frame]]
+                data = np.stack([x, y]).T
+                scat.set_offsets(data)
+                line.set_xdata(x)
+                line.set_ydata(y)
+                return scat, line
 
-        # Create the animation
-        if (iterations <= 5) :
-            ani = animation.FuncAnimation(fig, update, frames=len(self.resultPoints) + 1, interval=50)
-        else :
-            ani = animation.FuncAnimation(fig, update, frames=len(self.resultPoints) + 1, interval=25)
+            # Membuat animasi bergerak saat membentuk kurva bezier
+            ani = animation.FuncAnimation(fig, update, frames=len(self.resultPoints) + 1, interval=100)
         canvas = FigureCanvasTkAgg(fig, master=page1)
         canvas.get_tk_widget().place(x=264, y=110)  
         canvas.draw()
@@ -175,6 +208,7 @@ class Solver2:
         # Menampilkan waktu proses pada GUI
         time2_result.config(text=f'{timer2} ms')
 
+# Fungsi untuk mengatur masukkan titik pada GUI ke bentuk array
 def point_split(input):
     lines = input.split("\n")
     result = []
@@ -196,7 +230,7 @@ def resource_path(relative_path):
     base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
     return os.path.join(base_path, relative_path)
 
-# Input Keyboard
+# Input Menggunakan Keyboard dari User
 def input_keyboard():
     global iterations
     global n
@@ -223,10 +257,10 @@ def solve_bezier():
     if input_keyboard() == None:
         messagebox.showerror("Error", "Please complete the input")
         return
-    solver_obj = Solver()
     solver_obj2 = Solver2()
-    solver_obj.solve(iterations, points)
+    solver_obj = Solver()
     solver_obj2.solve2(points, iterations)
+    solver_obj.solve(iterations, points)
 
 ################### TKINTER GUI ###################
 window = Tk()
@@ -306,5 +340,5 @@ start_img = PhotoImage(file=start_path)
 start_img_btn = Button(page1, image = start_img, bg='#FFFFFF', bd=0, command=solve_bezier)
 start_img_btn.place(x=30, y=590)
 
-# END
+# End of GUI 
 window.mainloop()

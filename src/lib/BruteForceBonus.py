@@ -1,6 +1,7 @@
 import numpy as np
 
-#membuat segitiga pascal
+# Algoritma Brute Force untuk control point (n) > 3
+# Fungsi untuk membuat segitiga pascal
 def pascal_triangle(n):
     triangle = [[0] * (n + 1) for _ in range(n + 1)]
     for line in range(n + 1):
@@ -11,6 +12,7 @@ def pascal_triangle(n):
                 triangle[line][i] = triangle[line - 1][i - 1] + triangle[line - 1][i]
     return triangle
 
+# Fungsi untuk membentuk formula sesuai dengan titik yang diinginkan 
 def pascal_function(n, t):
     triangle = pascal_triangle(n)
     result = []
@@ -19,7 +21,7 @@ def pascal_function(n, t):
         result.append(coeff)
     return result
 
-#membentuk titik-titik kurva bezier
+# Fungsi untuk membentuk titik-titik kurva bezier
 def bezier_pascal(points, iteration):
     precision = 1.0/2**iteration
     points_fix = []  

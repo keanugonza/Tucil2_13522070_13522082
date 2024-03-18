@@ -1,7 +1,7 @@
 import numpy
 import math
 
-# Algoritma Brute Force
+# Algoritma Brute Force untuk control point (n) = 3
 def bezier_bf(points, iteration):
     precision = 1.0/2**iteration
     points_fix = [points[0]]  

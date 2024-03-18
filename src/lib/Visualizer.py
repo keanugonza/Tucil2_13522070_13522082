@@ -24,7 +24,7 @@ def animate_curve(results, points, title):
     xp = [p[0] for p in points]
     yp = [p[1] for p in points]
     plt.plot(xp,yp, marker = "o", markerfacecolor = 'red')
-    # Get min and max coordinates
+    # Mendapatkan ukuran yang sesuai untuk ukuran kurvanya 
     all_x = [x[0] for x in results + points]
     all_y = [x[1] for x in results + points]
     rentangX = max(all_x) - min(all_x)
