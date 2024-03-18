@@ -118,7 +118,7 @@ class Solver:
             return scat, line
 
         # Create the animation
-        ani = animation.FuncAnimation(fig, update, frames=len(self.resultPoints) + 1, interval=150)
+        ani = animation.FuncAnimation(fig, update, frames=len(self.resultPoints) + 1, interval=50)
         canvas = FigureCanvasTkAgg(fig, master=page1)
         canvas.get_tk_widget().place(x=264, y=110)  
         canvas.draw()
