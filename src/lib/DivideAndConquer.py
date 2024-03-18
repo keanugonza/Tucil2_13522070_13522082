@@ -1,5 +1,4 @@
-import matplotlib.pyplot as plt
-import time
+import numpy as np
 
 class DivideAndConquer:
     def __init__(self):
@@ -8,9 +7,7 @@ class DivideAndConquer:
 
     #untuk mencari titik tengah antara 2 titik
     def titikTengah(self, point1, point2):
-        x = (point1[0] + point2[0]) / 2
-        y = (point1[1] + point2[1]) / 2
-        return (x, y )
+        return ((point1[0] + point2[0]) / 2, (point1[1] + point2[1]) / 2 )
 
     #membentuk array kumpulan titik tengah sesuai iterasi
     def newCoordinate(self, point1, point2, point3, iterationNow, iterations):

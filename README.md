@@ -35,9 +35,13 @@
 
 
 ## General Information
-Kurva Bézier adalah kurva halus yang sering digunakan dalam desain grafis, animasi, dan manufaktur. Kurva ini dibuat dengan menghubungkan beberapa titik kontrol, yang menentukan bentuk dan arah kurva. Cara membuatnya cukup mudah, yaitu dengan menentukan titik-titik kontrol dan menghubungkannya dengan kurva. <br>
-<br>
-Kami membuat program untuk membentuk kurva bezier dengan N titik menggunakan bahasa python
+In this assignment, the main issue to be addressed is the formation of Quadratic Bézier Curve. The objective of this task is to visualize the curve resulting from points determined using the Divide and Conquer Algorithm approach. Additionally, this task will also involve the generalization of the algorithm so that it can solve the problem of forming Bézier Curves from n points. In this small assignment, a brute force algorithm is utilized as a benchmark to be compared in terms of complexity and validity of the solution.
+
+
+## Technologies Used
+- Tech 1 - version 1.0
+- Tech 2 - version 2.0
+- Tech 3 - version 3.0
 
 
 ## Features
@@ -48,7 +52,7 @@ Kami membuat program untuk membentuk kurva bezier dengan N titik menggunakan bah
 ## Screenshots
 ![Example screenshot](./test/test_2.png)
 ![Example screenshot](./test/test_4.png)
-<!-- If you have screenshots you'd like to share, include them here. -->
+
 
 
 ## Usage
