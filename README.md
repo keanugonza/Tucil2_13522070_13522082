@@ -51,16 +51,29 @@ In this assignment, the main issue to be addressed is the formation of Quadratic
 
 ## Setup
 - Make sure you have the following python library installed <br>
-`pip install numpy` <br>
-`pip install matplotlib` <br>
+```bash
+pip install numpy
+```
+```bash
+pip install matplotlib
+```
 
 - To run our project, simply navigate to src directory and run <br>
 If you want to use the CLI <br>
-`cd src` <br>
-`python main.py` <br>
+```bash
+cd src 
+```
+```bash
+python main.py 
+```
+
 If you want to use the GUI <br>
-`cd src` <br>
-`python gui.py` <br>
+```bash
+cd src 
+```
+```bash
+python gui.py 
+```
 
 ## How to Use
 Make sure your input format is as below:
