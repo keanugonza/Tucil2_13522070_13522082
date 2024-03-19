@@ -62,28 +62,6 @@ class Solver:
         self.resultPoints.append(points[0])
         self.newCoordinate_N(points, 0, iterations)
         self.resultPoints.append(points[-1])
-    
-    def mid_visualize(self, points):
-        midpoints = []
-        for i in range(len(points) - 1):
-            x1, y1 = points[i]
-            x2, y2 = points[i + 1]
-            mid_x = (x1 + x2) / 2
-            mid_y = (y1 + y2) / 2
-            midpoints.append((mid_x, mid_y))
-        return midpoints
-
-    def mid_iterate(self, points, iterations):
-        all_midpoints = [points]
-        for _ in range(iterations):
-            current_points = all_midpoints[-1]
-            new_points = [current_points[0]]
-            for i in range(len(current_points) - 1):
-                midpoints = self.mid_visualize([current_points[i], current_points[i + 1]])
-                new_points.append(midpoints[0])  
-            new_points.append(current_points[-1])
-            all_midpoints.append(new_points)
-        return all_midpoints
 
     def solve(self, iterations, points):
         # Timer proses
@@ -102,7 +80,6 @@ class Solver:
         time_result.config(text=f'{timer} ms')
             
         # Menampilkan kurva
-        all_midpoints = self.mid_iterate(points, iterations)
         if (iterations >= 10) :
             x = [p[0] for p in self.resultPoints]
             y = [p[1] for p in self.resultPoints]
@@ -125,9 +102,6 @@ class Solver:
             x2 = [p2[0] for p2 in points]
             y2 = [p2[1] for p2 in points]
             ax.plot(x2, y2)
-            for i, curve in enumerate(all_midpoints, start=1):
-                x, y = zip(*curve)
-                ax.plot(x, y)
             for i in range(len(points)):
                 ax.plot(points[i][0], points[i][1], marker='o', markerfacecolor='red')
             # Mendapatkan ukuran yang sesuai untuk ukuran kurvanya 
