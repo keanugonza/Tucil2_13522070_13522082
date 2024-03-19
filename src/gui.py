@@ -103,7 +103,7 @@ class Solver:
             
         # Menampilkan kurva
         all_midpoints = self.mid_iterate(points, iterations)
-        if (iterations > 10) :
+        if (iterations >= 10) :
             x = [p[0] for p in self.resultPoints]
             y = [p[1] for p in self.resultPoints]
             fig, ax = plt.subplots(figsize=(6.5, 4.5))
