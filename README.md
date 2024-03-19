@@ -50,10 +50,11 @@ In this assignment, the main issue to be addressed is the formation of Quadratic
 ![Example screenshot](./test/bonus_test2.png)
 
 ## Setup
-- Make sure you have the following python library installed
-`pip install numpy`
-`pip install matplotlib`
-- To run our project, simply navigate to src directory and run
+- Make sure you have the following python library installed <br>
+`pip install numpy` <br>
+`pip install matplotlib` <br>
+
+- To run our project, simply navigate to src directory and run <br>
 If you want to use the CLI <br>
 `cd src` <br>
 `python main.py` <br>
@@ -61,7 +62,7 @@ If you want to use the GUI <br>
 `cd src` <br>
 `python gui.py` <br>
 
-## Usage
+## How to Use
 Make sure your input format is as below:
 
 - Enter control points in the format 
