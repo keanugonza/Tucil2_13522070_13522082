@@ -63,8 +63,8 @@ if (n == 3):
         print(textcolors.FAIL + "Oops, there is a difference between the two algorithms." + textcolors.ENDC)
 
     # Visualisasi menggunakan matplotlib
-    plot_curve(curve_points_dnc, points, "Divide and Conquer")
-    plot_curve(curve_points_bf, points, "Brute Force")
+    plot_curve(curve_points_dnc, points, "Divide and Conquer", iterations)
+    plot_curve(curve_points_bf, points, "Brute Force", iterations)
 
 # Algoritma untuk spek bonus
 else:
@@ -88,5 +88,5 @@ else:
         print(textcolors.FAIL + "Oops, there is a difference between the two algorithms." + textcolors.ENDC)
 
     # Visualisasi menggunakan matplotlib
-    plot_curve(bezier_dnc.resultPoints, points, "Divide and Conquer")
-    plot_curve(curve_points_bf, points, "Brute Force")
+    plot_curve(bezier_dnc.resultPoints, points, "Divide and Conquer", iterations)
+    plot_curve(curve_points_bf, points, "Brute Force", iterations)
