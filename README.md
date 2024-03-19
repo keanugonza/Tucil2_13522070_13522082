@@ -52,7 +52,8 @@ In this assignment, the main issue to be addressed is the formation of Quadratic
 ## Screenshots
 ![Example screenshot](./test/test_2.png)
 ![Example screenshot](./test/test_4.png)
-![Example screenshot](./test/bonus_test5.png)
+![Example screenshot](./test/bonus_test3.png)
+![Example screenshot](./test/bonus_test2.png)
 
 
 
