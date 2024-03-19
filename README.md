@@ -59,7 +59,7 @@ pip install matplotlib
 ```
 
 - To run our project, simply navigate to src directory and run <br>
-If you want to use the CLI <br>
+- If you want to use the CLI <br>
 ```bash
 cd src 
 ```
@@ -67,7 +67,7 @@ cd src
 python main.py 
 ```
 
-If you want to use the GUI <br>
+- If you want to use the GUI <br>
 ```bash
 cd src 
 ```
