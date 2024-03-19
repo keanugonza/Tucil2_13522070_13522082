@@ -39,8 +39,8 @@ In this assignment, the main issue to be addressed is the formation of Quadratic
 
 
 ## Features
-- Dapat membentuk Kurva Bezier dengan N titik > 2
-- Dapat memvisualisasikan Kurva
+- Ability to form Bézier Curve with N points > 2
+- Ability to visualize the curve using matplotlib and GUI format
 
 
 ## Screenshots
