@@ -30,18 +30,12 @@
 * [Screenshots](#screenshots)
 * [Usage](#usage)
 * [Project Status](#project-status)
-* [Room for Improvement](#room-for-improvement)
 * [Contact](#contact)
 
 
 ## General Information
 In this assignment, the main issue to be addressed is the formation of Quadratic Bézier Curve. The objective of this task is to visualize the curve resulting from points determined using the Divide and Conquer Algorithm approach. Additionally, this task will also involve the generalization of the algorithm so that it can solve the problem of forming Bézier Curves from n points. In this small assignment, a brute force algorithm is utilized as a benchmark to be compared in terms of complexity and validity of the solution.
 
-
-## Technologies Used
-- Tech 1 - version 1.0
-- Tech 2 - version 2.0
-- Tech 3 - version 3.0
 
 
 ## Features
@@ -56,7 +50,6 @@ In this assignment, the main issue to be addressed is the formation of Quadratic
 ![Example screenshot](./test/bonus_test2.png)
 
 
-
 ## Usage
 Jika ingin menggunakan CLI <br>
 `python main.py` <br>
@@ -67,20 +60,6 @@ Jika ingin menggunakan GUI <br>
 
 ## Project Status
 Project is:  _complete_ 
-
-
-## Room for Improvement
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
-
-Room for improvement:
-- Improvement to be done 1
-- Improvement to be done 2
-
-To do:
-- Feature to be added 1
-- Feature to be added 2
-
-
 
 ## Contact
 13522070@mahasiswa.itb.ac.id (Marzuli Suhada M) <br>
