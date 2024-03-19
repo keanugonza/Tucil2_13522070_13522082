@@ -49,15 +49,30 @@ In this assignment, the main issue to be addressed is the formation of Quadratic
 ![Example screenshot](./test/bonus_test3.png)
 ![Example screenshot](./test/bonus_test2.png)
 
-
-## Usage
-Jika ingin menggunakan CLI <br>
+## Setup
+- Make sure you have the following python library installed
+`pip install numpy`
+`pip install matplotlib`
+- To run our project, simply navigate to src directory and run
+If you want to use the CLI <br>
 `cd src` <br>
 `python main.py` <br>
-<br>
-Jika ingin menggunakan GUI <br>
+If you want to use the GUI <br>
 `cd src` <br>
 `python gui.py` <br>
+
+## Usage
+Make sure your input format is as below:
+
+- Enter control points in the format 
+x1,y1
+x2,y2
+x3,y3
+...
+xn,yn
+
+- The input for the number of points must be at least 3.
+- The input for the number of iterations must be an integer greater than 0
 
 
 ## Project Status
