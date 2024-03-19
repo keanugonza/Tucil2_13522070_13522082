@@ -52,10 +52,12 @@ In this assignment, the main issue to be addressed is the formation of Quadratic
 
 ## Usage
 Jika ingin menggunakan CLI <br>
+`cd src` <br>
 `python main.py` <br>
 <br>
 Jika ingin menggunakan GUI <br>
-`python gui.py`
+`cd src` <br>
+`python gui.py` <br>
 
 
 ## Project Status
